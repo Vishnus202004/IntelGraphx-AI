@@ -49,7 +49,7 @@ const Landing = () => {
 
   return (
     <div className="landing-page" style={{ padding: 0 }}>
-      {/* Auth Modal */}
+
       {showAuth && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div className="animate-fade-up" style={{ background: 'rgba(255,255,255,0.9)', padding: '40px', borderRadius: '24px', width: '100%', maxWidth: '400px', boxShadow: '0 24px 60px rgba(0,0,0,0.1)', border: '1px solid rgba(255,255,255,0.8)', position: 'relative' }}>
@@ -83,14 +83,14 @@ const Landing = () => {
         </div>
       )}
 
-      {/* Floating background orbs */}
+
       <div className="landing-orbs">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
         <div className="orb orb-3" />
       </div>
 
-      {/* Top Banner / Announcement Ticker */}
+
       <div style={{
         width: '100%',
         background: 'linear-gradient(90deg, rgba(255,126,71,0.06), rgba(167,139,250,0.06))',
@@ -109,7 +109,7 @@ const Landing = () => {
 
       </div>
 
-      {/* Top Glass Navbar */}
+
       <nav className="glass-nav" style={{
         animation: 'floatNavbar 0.8s ease-out forwards',
         background: 'rgba(255, 255, 255, 0.55)',
@@ -149,29 +149,22 @@ const Landing = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
 
-        {/* Decorative Ornate Swirl (SVG) */}
-        <div className="animate-fade-up animate-delay-200" style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', opacity: 0.8 }}>
-          <svg width="180" height="30" viewBox="0 0 180 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 15C35 25 50 5 90 15C130 25 145 5 170 15" stroke="#ff7e47" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M40 15C60 22 75 8 90 15C105 22 120 8 140 15" stroke="#ff7e47" strokeWidth="1" strokeLinecap="round" strokeDasharray="3 3" />
-            <circle cx="90" cy="15" r="4" fill="#ff7e47" />
-          </svg>
-        </div>
+
 
         {/* Subtitle */}
         <h3 className="animate-fade-up animate-delay-200" style={{ color: '#4f46e5', marginBottom: '16px', fontSize: '15px', fontWeight: '700', letterSpacing: '1px', textTransform: 'uppercase', fontFamily: "'Lora', serif" }}>
           AI-powered Competitor Intelligence
         </h3>
 
-        {/* Headline with Elegant Serif Lora Font */}
+
         <h1 className="animate-fade-up animate-delay-200" style={{ fontSize: '76px', margin: '0 0 16px 0', letterSpacing: '-1.5px', color: '#0f172a', lineHeight: 1.1, textAlign: 'center', fontFamily: "'Lora', serif", fontWeight: '500' }}>
           Intelligence for all SaaS teams
         </h1>
 
-        {/* Elegant subtext description */}
+
         <div className="animate-fade-up animate-delay-300" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', marginBottom: '40px' }}>
           <p style={{ fontSize: '20px', color: '#334155', textAlign: 'center', margin: 0, fontWeight: '500' }}>
             Built on multi-agent graph state-machines. Powered by ModelSmith AI.
@@ -181,7 +174,7 @@ const Landing = () => {
           </p>
         </div>
 
-        {/* CTA Buttons - Symmetrical Pill Style */}
+
         <div className="animate-fade-up animate-delay-400" style={{ display: 'flex', gap: '16px', marginBottom: '60px' }}>
           {isAuthenticated ? (
             <Link to="/app" className="btn-primary" style={{
@@ -206,11 +199,11 @@ const Landing = () => {
           }}>Contact Us</a>
         </div>
 
-        {/* Infinite Tech Stack Marquee */}
+
         <div className="animate-fade-up animate-delay-300" style={{ width: '100vw', background: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(0,0,0,0.05)', borderBottom: '1px solid rgba(0,0,0,0.05)', padding: '24px 0', marginBottom: '80px', overflow: 'hidden' }}>
           <div className="marquee-container">
             <div className="marquee-content">
-              {/* Duplicate list to ensure seamless infinite scroll */}
+
               {[...Array(2)].map((_, i) => (
                 <React.Fragment key={i}>
                   <span style={{ fontSize: '18px', fontWeight: '700', color: '#64748b' }}>FASTAPI</span>
@@ -226,13 +219,13 @@ const Landing = () => {
           </div>
         </div>
 
-        {/* The IntelGraphX Pipeline Visualizer */}
+
         <div className="animate-fade-up animate-delay-400" style={{ width: '100%', maxWidth: '1000px', marginBottom: '100px', textAlign: 'center' }}>
           <h2 style={{ fontSize: '36px', fontWeight: '500', color: '#0f172a', marginBottom: '48px', fontFamily: "'Lora', serif" }}>
             The Architecture Behind the Magic
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', padding: '40px 0' }}>
-            {/* Connecting line */}
+
             <div style={{ position: 'absolute', top: '50%', left: '40px', right: '40px', height: '2px', background: 'linear-gradient(90deg, #4f46e5, #ff7e47, #f472b6)', zIndex: 0, opacity: 0.3 }} />
 
             {[
@@ -252,11 +245,11 @@ const Landing = () => {
           </div>
         </div>
 
-        {/* Bento Grid Features */}
+
         <div className="animate-fade-up animate-delay-400" style={{ width: '100%', maxWidth: '1200px', marginBottom: '120px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'auto auto', gap: '24px' }}>
 
-            {/* Large Card */}
+
             <div className="bento-card" style={{ gridColumn: '1 / span 2', gridRow: '1', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <div style={{ background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(167, 139, 250, 0.1))', width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                 <Brain size={24} color="#4f46e5" />
@@ -267,7 +260,7 @@ const Landing = () => {
               </p>
             </div>
 
-            {/* Square Card 1 */}
+
             <div className="bento-card" style={{ gridColumn: '3', gridRow: '1' }}>
               <div style={{ background: 'linear-gradient(135deg, rgba(255, 126, 71, 0.1), rgba(244, 114, 182, 0.1))', width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                 <Target size={24} color="#ff7e47" />
@@ -278,7 +271,7 @@ const Landing = () => {
               </p>
             </div>
 
-            {/* Square Card 2 */}
+
             <div className="bento-card" style={{ gridColumn: '1', gridRow: '2' }}>
               <div style={{ background: 'rgba(34, 197, 94, 0.1)', width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                 <Shield size={24} color="#16a34a" />
@@ -289,7 +282,7 @@ const Landing = () => {
               </p>
             </div>
 
-            {/* Wide Card */}
+
             <div className="bento-card" style={{ gridColumn: '2 / span 2', gridRow: '2', display: 'flex', alignItems: 'center', gap: '32px' }}>
               <div style={{ flex: 1 }}>
                 <div style={{ background: 'rgba(234, 179, 8, 0.1)', width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
@@ -305,7 +298,7 @@ const Landing = () => {
           </div>
         </div>
 
-        {/* About IntelGraphX Section (Elevated) */}
+
         <div id="about-intelgraphx" className="animate-fade-up animate-delay-400" style={{ width: '100%', maxWidth: '1000px' }}>
           <div style={{
             background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)',
@@ -316,7 +309,7 @@ const Landing = () => {
             position: 'relative',
             overflow: 'hidden'
           }}>
-            {/* Decorative background blur */}
+
             <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '300px', height: '300px', background: '#4f46e5', filter: 'blur(120px)', opacity: 0.4, borderRadius: '50%' }} />
             <div style={{ position: 'absolute', bottom: '-50px', left: '-50px', width: '200px', height: '200px', background: '#ff7e47', filter: 'blur(100px)', opacity: 0.3, borderRadius: '50%' }} />
 
@@ -350,7 +343,7 @@ const Landing = () => {
 
       </div>
 
-      {/* Footer tagline */}
+
       <div className="animate-fade-up animate-delay-400" style={{ marginTop: '80px', paddingTop: '60px', paddingBottom: '32px', width: '100%', textAlign: 'center' }}>
         <p style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', color: '#64748b', margin: 0 }}>
           Turning advanced intelligence into everyday impact
