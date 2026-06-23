@@ -9,14 +9,14 @@ const Reports = () => {
   const handleDownload = async () => {
     setDownloading(true);
     try {
-      // Stream the PDF directly from the FastAPI backend
+
       const response = await fetch(`${API_BASE}/reports/download`);
       if (!response.ok) throw new Error('Failed to generate report');
 
       const blob = await response.blob();
-      const url  = window.URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href     = url;
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
       a.download = 'IntelGraphX_Weekly_Battle_Card.pdf';
       document.body.appendChild(a);
       a.click();
@@ -41,11 +41,11 @@ const Reports = () => {
       </div>
 
       <div className="grid-2">
-        {/* Download Panel */}
+
         <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           <h2>Generated Reports</h2>
 
-          {/* Current Week */}
+
           <div style={{
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
             padding: '20px', background: 'rgba(59,130,246,0.08)',
@@ -83,7 +83,7 @@ const Reports = () => {
           </p>
         </div>
 
-        {/* Competitor Timeline */}
+
         <div className="glass-panel">
           <h2>Competitor Timeline</h2>
           <p>Major strategic shifts detected by your agents.</p>
@@ -96,9 +96,9 @@ const Reports = () => {
             display: 'flex', flexDirection: 'column', gap: '28px'
           }}>
             {[
-              { dot: '#3b82f6', ago: 'Today',       text: 'Pipeline started for all tracked competitors' },
-              { dot: '#a78bfa', ago: '6 hrs',        text: 'APScheduler will auto-trigger intelligence cycle' },
-              { dot: '#22c55e', ago: 'Next Monday',  text: 'First weekly email digest scheduled for delivery' },
+              { dot: '#3b82f6', ago: 'Today', text: 'Pipeline started for all tracked competitors' },
+              { dot: '#a78bfa', ago: '6 hrs', text: 'APScheduler will auto-trigger intelligence cycle' },
+              { dot: '#22c55e', ago: 'Next Monday', text: 'First weekly email digest scheduled for delivery' },
             ].map((item, i) => (
               <div key={i} style={{ position: 'relative' }}>
                 <div style={{

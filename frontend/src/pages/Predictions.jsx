@@ -40,7 +40,7 @@ const Predictions = () => {
       <div className="grid-2">
         {predictions.map(pred => (
           <div key={pred.id} className="glass-panel" style={{ position: 'relative', overflow: 'hidden' }}>
-            {/* Severity stripe */}
+
             <div style={{
               position: 'absolute', top: 0, left: 0, width: '4px', height: '100%',
               background: confidenceColor(pred.confidence)
@@ -64,15 +64,15 @@ const Predictions = () => {
               </div>
             </div>
 
-            {/* Title */}
+
             <p style={{ fontWeight: '600', color: '#0f172a', marginBottom: '8px' }}>{pred.title}</p>
 
-            {/* Content / reasoning */}
+
             <p style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.6', marginBottom: '16px' }}>
               {pred.content}
             </p>
 
-            {/* Verified / Missed badge */}
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '12px', color: '#64748b' }}>
                 {new Date(pred.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}

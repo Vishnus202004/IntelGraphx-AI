@@ -34,7 +34,7 @@ const Alerts = () => {
   };
 
   const unresolved = alerts.filter(a => !a.is_approved);
-  const resolved   = alerts.filter(a => a.is_approved);
+  const resolved = alerts.filter(a => a.is_approved);
 
   return (
     <div>
@@ -46,7 +46,7 @@ const Alerts = () => {
         </div>
       </div>
 
-      {/* Summary bar */}
+
       <div className="grid-3" style={{ marginBottom: '24px' }}>
         <div className="glass-panel" style={{ padding: '16px' }}>
           <h3>Total Alerts</h3>
