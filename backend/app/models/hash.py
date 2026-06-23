@@ -17,5 +17,5 @@ class Hash(Base):
     content_hash: Mapped[str] = mapped_column(String(64), nullable=False)
     checked_at: Mapped[datetime] = mapped_column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
-    # Relationships
+
     competitor: Mapped["Competitor"] = relationship("Competitor", back_populates="hashes")

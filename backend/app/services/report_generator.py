@@ -15,11 +15,11 @@ async def generate_weekly_report_pdf(db: AsyncSession, filepath: str):
     styles = getSampleStyleSheet()
     story = []
 
-    # Title
+
     story.append(Paragraph("IntelGraphX AI - Weekly Battle Card", styles['Title']))
     story.append(Spacer(1, 12))
 
-    # Fetch Alerts
+
     story.append(Paragraph("Recent Intelligence Alerts", styles['Heading2']))
     alert_result = await db.execute(select(Alert).order_by(Alert.created_at.desc()).limit(10))
     alerts = alert_result.scalars().all()
@@ -33,7 +33,7 @@ async def generate_weekly_report_pdf(db: AsyncSession, filepath: str):
 
     story.append(Spacer(1, 12))
 
-    # Fetch Predictions
+
     story.append(Paragraph("AI Strategic Forecasts", styles['Heading2']))
     pred_result = await db.execute(select(Prediction).order_by(Prediction.created_at.desc()).limit(5))
     preds = pred_result.scalars().all()

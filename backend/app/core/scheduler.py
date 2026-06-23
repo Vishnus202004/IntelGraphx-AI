@@ -33,7 +33,7 @@ async def automated_intelligence_job():
             logger.info(f"--- Processing: {comp.name} ({comp.domain}) ---")
 
             try:
-                # 1. Scrape the target URL and detect structural changes
+           
                 scrape_result = await detect_webpage_changes(
                     db=db,
                     competitor_id=comp.id,
@@ -48,17 +48,17 @@ async def automated_intelligence_job():
 
                 logger.info(f"Change detected for {comp.name}. Running full intelligence cycle.")
 
-                # 2. Embed the scraped content into ChromaDB for future RAG retrieval
+             
                 await store_scraped_content(
                     competitor_id=comp.id,
                     url=comp.domain,
                     content=scraped_text
                 )
 
-                # 3. Fetch live Google News
+
                 news_items = await fetch_news_via_google_rss(comp.name)
 
-                # 4. Build the complete AgentState for the LangGraph pipeline
+            
                 thread_id    = f"comp-{comp.id}-scheduler"
                 config       = {"configurable": {"thread_id": thread_id}}
                 initial_state = {
@@ -82,7 +82,6 @@ async def automated_intelligence_job():
                     "messages":            []
                 }
 
-                # 5. Run the pipeline up to the Human-in-the-Loop interrupt (before alert node)
                 await agent_pipeline.ainvoke(initial_state, config=config)
                 logger.info(f"Pipeline completed for {comp.name} — paused at HITL checkpoint.")
 
@@ -93,7 +92,7 @@ async def automated_intelligence_job():
     logger.info("=== AUTOMATED INTELLIGENCE JOB COMPLETE ===")
 
 
-# Initialize the scheduler
+
 scheduler = AsyncIOScheduler()
 
 async def automated_weekly_report_job():
@@ -112,11 +111,11 @@ async def automated_weekly_report_job():
         
         report_competitors = []
         for comp in competitors:
-            # Get latest alert summary
+
             alert_res = await db.execute(select(Alert).where(Alert.competitor_id == comp.id).order_by(Alert.created_at.desc()).limit(1))
             latest_alert = alert_res.scalar_one_or_none()
             
-            # Get latest prediction
+
             pred_res = await db.execute(select(Prediction).where(Prediction.competitor_id == comp.id).order_by(Prediction.created_at.desc()).limit(1))
             latest_pred = pred_res.scalar_one_or_none()
             
@@ -129,7 +128,7 @@ async def automated_weekly_report_job():
             
         report_data = {"competitors": report_competitors}
         
-        # Email target
+
         import os
         target_email = os.getenv("SMTP_USER", "vishnus202004@gmail.com")
         await send_intel_report([target_email], report_data)
@@ -140,7 +139,7 @@ def start_scheduler():
     """Starts the APScheduler background job. Called once on FastAPI startup."""
     logger.info("Starting APScheduler — Intelligence cycle runs every 6 hours, Digest weekly.")
     
-    # 6-hour scrape job
+
     scheduler.add_job(
         automated_intelligence_job,
         trigger="interval",
@@ -149,7 +148,7 @@ def start_scheduler():
         replace_existing=True
     )
     
-    # Weekly digest email (Every Monday at 8 AM)
+
     scheduler.add_job(
         automated_weekly_report_job,
         trigger="cron",

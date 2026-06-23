@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import DeclarativeBase
 from app.core.config import settings
 
-# SQLite configuration settings. Disable same-thread check as we run async
+
 connect_args = {"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_async_engine(

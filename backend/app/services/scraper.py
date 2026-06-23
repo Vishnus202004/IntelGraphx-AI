@@ -26,22 +26,21 @@ async def scrape_url(url: str) -> str:
             )
             page = await context.new_page()
             
-            # Go to URL and wait for domcontentloaded
+  
             response = await page.goto(url, timeout=30000, wait_until="domcontentloaded")
             if not response:
                 raise ValueError(f"Failed to receive response from {url}")
             
             if response.status >= 400:
                 logger.warning(f"Received HTTP {response.status} from {url}. Continuing anyway, but content may be restricted.")
-                # We do not raise an exception, so we can scrape whatever error page is returned (or try to continue).
+               
 
-            # Wait additional time for React/Vue dynamic components to settle
             await page.wait_for_timeout(3000)
 
-            # Retrieve inner text from the body
+
             body_text = await page.evaluate("() => document.body.innerText")
             
-            # Clean text by stripping lines and ignoring empty space
+         
             lines = [line.strip() for line in body_text.split("\n") if line.strip()]
             cleaned_text = "\n".join(lines)
             
@@ -66,11 +65,11 @@ async def detect_webpage_changes(db: AsyncSession, competitor_id: int, url: str)
     Scrapes a URL, computes its hash, compares it with the stored hash for this competitor URL,
     and updates the database if it has changed.
     """
-    # 1. Scrape content
+
     scraped_content = await scrape_url(url)
     current_hash = compute_sha256(scraped_content)
 
-    # 2. Query database for existing hash record
+  
     stmt = select(Hash).filter(Hash.competitor_id == competitor_id, Hash.url == url)
     result = await db.execute(stmt)
     db_hash_record = result.scalars().first()
@@ -79,7 +78,7 @@ async def detect_webpage_changes(db: AsyncSession, competitor_id: int, url: str)
     old_hash = None
 
     if db_hash_record is None:
-        # First time scraping this page
+       
         has_changed = True
         new_record = Hash(
             competitor_id=competitor_id,

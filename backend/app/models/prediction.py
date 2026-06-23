@@ -17,8 +17,8 @@ class Prediction(Base):
     content: Mapped[str] = mapped_column(String(1024), nullable=False)
     confidence: Mapped[float] = mapped_column(Float, nullable=False)
     target_date: Mapped[datetime] = mapped_column(DateTime, nullable=True)
-    is_correct: Mapped[bool] = mapped_column(Boolean, nullable=True)  # None until validated, then True/False
+    is_correct: Mapped[bool] = mapped_column(Boolean, nullable=True) 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now(), nullable=False)
 
-    # Relationships
+
     competitor: Mapped["Competitor"] = relationship("Competitor", back_populates="predictions")

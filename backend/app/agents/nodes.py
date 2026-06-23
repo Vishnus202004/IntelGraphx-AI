@@ -13,7 +13,7 @@ from app.models.alert import Alert
 
 logger = logging.getLogger(__name__)
 
-# Initialize Groq LLM
+
 if settings.GROQ_API_KEY:
     llm = ChatGroq(
         temperature=0.2,
@@ -139,7 +139,7 @@ async def alert_node(state: AgentState) -> dict:
 
     title = f"[{severity}] Intel Update: {state['competitor_name']} Action Detected"
 
-    # Persist to database natively
+
     async with async_session_maker() as db:
         alert = Alert(
             competitor_id=state.get("competitor_id", 0),

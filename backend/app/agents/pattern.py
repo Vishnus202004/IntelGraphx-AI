@@ -34,20 +34,20 @@ async def pattern_node(state: AgentState) -> dict:
             "messages": []
         }
 
-    # Retrieve historical context natively
+
     historical_alerts = []
     historical_preds = []
     
     try:
         async with async_session_maker() as db:
-            # Get last 10 alerts
+ 
             alert_res = await db.execute(
                 select(Alert).where(Alert.competitor_id == state.get("competitor_id", 0))
                 .order_by(Alert.created_at.desc()).limit(10)
             )
             historical_alerts = alert_res.scalars().all()
 
-            # Get last 5 predictions
+
             pred_res = await db.execute(
                 select(Prediction).where(Prediction.competitor_id == state.get("competitor_id", 0))
                 .order_by(Prediction.created_at.desc()).limit(5)
@@ -56,7 +56,7 @@ async def pattern_node(state: AgentState) -> dict:
     except Exception as e:
         logger.error(f"Failed to retrieve history for pattern analysis: {e}")
 
-    # Format history
+
     alerts_text = "\n".join([f"- {a.created_at.date()}: [{a.severity}] {a.title} - {a.description}" for a in historical_alerts]) or "No historical alerts."
     preds_text = "\n".join([f"- {p.created_at.date()}: (Conf: {p.confidence}) {p.content}" for p in historical_preds]) or "No historical predictions."
 

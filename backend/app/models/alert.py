@@ -19,5 +19,5 @@ class Alert(Base):
     is_approved: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now(), nullable=False)
 
-    # Relationships
+
     competitor: Mapped["Competitor"] = relationship("Competitor", back_populates="alerts")

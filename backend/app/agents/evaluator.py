@@ -6,10 +6,6 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# RAGAS-equivalent evaluation using LLM-as-Judge with Groq
-# Computes Faithfulness, Answer Relevancy, and Context Relevance scores
-# ---------------------------------------------------------------------------
 
 EVAL_PROMPT = ChatPromptTemplate.from_template("""
 You are an expert evaluator assessing the quality of an AI-generated intelligence analysis.

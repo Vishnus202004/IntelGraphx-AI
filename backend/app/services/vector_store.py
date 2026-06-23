@@ -9,14 +9,18 @@ from langchain_core.documents import Document
 
 logger = logging.getLogger(__name__)
 
-# Initialize local embedding model for completely free and private offline embeddings
+
 try:
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(
+        model_name="all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"},
+        encode_kwargs={"normalize_embeddings": True},
+    )
 except Exception as e:
     logger.error(f"Failed to load HuggingFace Embeddings: {str(e)}")
     raise e
 
-# Initialize ChromaDB persistent vector store
+
 CHROMA_PERSIST_DIR = "./chroma_db"
 
 vector_store = Chroma(
@@ -25,7 +29,7 @@ vector_store = Chroma(
     persist_directory=CHROMA_PERSIST_DIR
 )
 
-# Initialize text chunker
+
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=200,

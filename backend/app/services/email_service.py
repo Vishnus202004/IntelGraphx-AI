@@ -7,7 +7,7 @@ from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 
-# Setup Jinja2 HTML email templates environment
+
 env = Environment(loader=FileSystemLoader("app/templates"))
 
 async def send_email(subject: str, recipients: list[str], html_content: str):
