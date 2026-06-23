@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: intelgraphx-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the database to persist data
+      - ./backend/intelgraphx.db:/app/intelgraphx.db
+      # Mount the ChromaDB folder to persist embeddings
+      - ./backend/chroma_db:/app/chroma_db
+    env_file:
+      - ./backend/.env
+    environment:
+      # Optional overrides
+      - LANGCHAIN_TRACING_V2=true
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: intelgraphx-frontend
+    ports:
+      - "5173:80"  # Map local 5173 to Nginx 80
+    depends_on:
+      - backend
+    restart: unless-stopped

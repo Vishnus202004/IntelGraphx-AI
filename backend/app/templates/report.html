@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Weekly Intelligence Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .header { background-color: #3b82f6; color: white; padding: 15px; border-radius: 6px 6px 0 0; text-align: center; }
+        .content { padding: 20px 0; }
+        .competitor-block { background-color: #f8fafc; padding: 15px; margin-bottom: 20px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        .competitor-name { font-size: 18px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #3b82f6; display: inline-block; }
+        .footer { font-size: 12px; color: #64748b; text-align: center; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>IntelGraphX AI Weekly Digest</h2>
+        </div>
+        <div class="content">
+            <p>Here is your weekly summary of competitor intelligence and strategic actions.</p>
+            
+            {% for comp in competitors %}
+            <div class="competitor-block">
+                <div class="competitor-name">{{ comp.name }}</div>
+                <p><strong>Recent Changes:</strong> {{ comp.summary }}</p>
+                <p><strong>Threat Score:</strong> {{ comp.threat_score }}/100</p>
+                <p><strong>Prediction:</strong> {{ comp.predicted_action }}</p>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <div class="footer">
+            Automated intelligence powered by IntelGraphX AI.
+        </div>
+    </div>
+</body>
+</html>
